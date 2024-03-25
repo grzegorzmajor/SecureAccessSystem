@@ -21,4 +21,5 @@ services:
       DB_URL: jdbc:postgresql://sasa_postgres:5432/se_ac_sys
       DB_USER: myuser
       DB_PASS: mypassword
-
+      MAIL_USER: your@email.com
+      MAIL_PASS: yourpass
