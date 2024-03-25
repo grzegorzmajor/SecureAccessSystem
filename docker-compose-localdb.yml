@@ -1,0 +1,21 @@
+
+# this is a docker compose file to manually build and run Postgres database
+#     for local testing with profile named localTesting
+#     you must have docker desktop installed and connected to IntelliJ
+#
+# don't forget to change the profile to the correct one in the application.properties file
+# when you pushing you commits to github
+
+
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: my_postgres
+    environment:
+      POSTGRES_DB: se_ac_sys
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"

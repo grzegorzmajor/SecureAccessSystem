@@ -1,0 +1,67 @@
+spring:
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    table: sec_acc_sys_flyway_history
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 10
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database: postgresql
+  application:
+    name: SecureAccessSystem
+  mail:
+    host: ssl0.ovh.net
+    port: 587
+    username: ${MAIL_USER}
+    password: ${MAIL_PASS}
+    protocol: smtp
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.ssl.trust: ssl0.ovh.net
+    default-encoding: UTF-8
+
+
+
+auth:
+  jwt:
+    refreshing:
+      expirationMinutes: 120
+      secret: secret1
+    access:
+      expirationMinutes: 5
+      secret: secret2
+      requireNotExpired: false
+      #requireNotExpired currently not used, may correspond to a different approach to token generation
+
+app:
+  url: https://api.major.ovh:16690
+
+server:
+  port: 16690
+
+userManagement:
+  registration:
+    linkExpirationInMinutes: 60
+  passwordChanging:
+    FirstToken:
+      linkExpirationInMinutes: 30
+    SecondToken:
+      linkExpirationInMinutes: 10
+  secret: dupa_bladabjfdwehajkhfdwahfjkdshafjkdshajkfhdjksahfjkdshfkjdshjkfhdsjkhfdsajkhfrjkdsahgklfiejwqio342u8543

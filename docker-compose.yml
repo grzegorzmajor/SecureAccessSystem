@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: sasa_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: se_ac_sys
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+  app:
+    container_name: app
+#    build: .
+    image: secure_access_system_app
+    restart: always
+    ports:
+      - "16690:16690"
+    environment:
+      DB_URL: jdbc:postgresql://sasa_postgres:5432/se_ac_sys
+      DB_USER: myuser
+      DB_PASS: mypassword
+
